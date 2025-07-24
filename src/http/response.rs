@@ -1,7 +1,7 @@
 /// This module defines the `HttpResponse` struct and its associated methods for creating HTTP responses.
 /// src/http/response.rs
 
-use crate::http::enums::{HttpMethod, HttpVersion, HttpStatus};
+use crate::http::enums::HttpStatus;
 use crate::http::headers::HttpHeaders;
 use std::fmt;
 pub struct HttpResponse {
