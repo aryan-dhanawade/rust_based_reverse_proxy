@@ -52,7 +52,7 @@ impl HttpStatus {
             HttpStatus::HttpVersionNotSupported => "HTTP Version Not Supported",
         }
     }
-
+    
     pub fn from_code(code: u16) -> Option<HttpStatus> {
         match code {
             200 => Some(HttpStatus::Ok),

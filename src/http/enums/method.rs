@@ -4,6 +4,7 @@
 
 use std::fmt;
 #[derive(Debug, Clone, PartialEq)]
+// We can support more methods in the future, but for now we will just use these.
 pub enum HttpMethod {
     GET,
     POST,
@@ -12,7 +13,7 @@ pub enum HttpMethod {
     HEAD,
     OPTIONS,
 }
-
+// Implement for string conversion and parsing
 impl fmt::Display for HttpMethod {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let method_str = match self {
@@ -26,6 +27,7 @@ impl fmt::Display for HttpMethod {
         write!(f, "{}", method_str)
     }
 }
+// Implement FromStr to parse from string
 impl std::str::FromStr for HttpMethod {
     type Err = String;
 
