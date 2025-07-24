@@ -19,6 +19,8 @@ pub enum HttpStatus {
     Forbidden = 403,
     NotFound = 404,
     MethodNotAllowed = 405,
+    PayloadTooLarge = 413,
+    RequestUriTooLong = 414,
 
     // Server Error Codes
     InternalServerError = 500,
@@ -45,11 +47,14 @@ impl HttpStatus {
             HttpStatus::Forbidden => "Forbidden",
             HttpStatus::NotFound => "Not Found",
             HttpStatus::MethodNotAllowed => "Method Not Allowed",
+            HttpStatus::PayloadTooLarge => "Payload Too Large",
+            HttpStatus::RequestUriTooLong => "Request URI Too Long",
             HttpStatus::InternalServerError => "Internal Server Error",
             HttpStatus::NotImplemented => "Not Implemented",
             HttpStatus::BadGateway => "Bad Gateway",
             HttpStatus::ServiceUnavailable => "Service Unavailable",
             HttpStatus::HttpVersionNotSupported => "HTTP Version Not Supported",
+
         }
     }
     
@@ -66,6 +71,8 @@ impl HttpStatus {
             403 => Some(HttpStatus::Forbidden),
             404 => Some(HttpStatus::NotFound),
             405 => Some(HttpStatus::MethodNotAllowed),
+            413 => Some(HttpStatus::PayloadTooLarge),
+            414 => Some(HttpStatus::RequestUriTooLong),
             500 => Some(HttpStatus::InternalServerError),
             501 => Some(HttpStatus::NotImplemented),
             502 => Some(HttpStatus::BadGateway),

@@ -1,6 +1,7 @@
 /// This module defines the HTTP version enum used in the Orion project.
 /// src/http/enums/version.rs
 use std::fmt;
+use crate::http::util::errors::HttpParseError;
 #[derive(Debug, Clone, PartialEq)]
 pub enum HttpVersion {
     HTTP1_0,
@@ -20,14 +21,14 @@ impl fmt::Display for HttpVersion {
 }
 
 impl std::str::FromStr for HttpVersion {
-    type Err = &'static str;
+    type Err = HttpParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
             "HTTP/1.0" => Ok(HttpVersion::HTTP1_0),
             "HTTP/1.1" => Ok(HttpVersion::HTTP1_1),
             "HTTP/2.0" | "HTTP/2" => Ok(HttpVersion::HTTP2_0),
-            _ => Err("Invalid HTTP version"),
+            _ => Err(HttpParseError::UnsupportedHttpVersion(s.to_string())),
         }
     }
 }

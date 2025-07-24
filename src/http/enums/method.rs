@@ -3,6 +3,7 @@
 /// src/http/enums/method.rs
 
 use std::fmt;
+use crate::http::util::errors::HttpParseError;
 #[derive(Debug, Clone, PartialEq)]
 // We can support more methods in the future, but for now we will just use these.
 pub enum HttpMethod {
@@ -29,7 +30,7 @@ impl fmt::Display for HttpMethod {
 }
 // Implement FromStr to parse from string
 impl std::str::FromStr for HttpMethod {
-    type Err = String;
+    type Err = HttpParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s.to_uppercase().as_str() {
@@ -39,7 +40,7 @@ impl std::str::FromStr for HttpMethod {
             "DELETE" => Ok(HttpMethod::DELETE),
             "HEAD" => Ok(HttpMethod::HEAD),
             "OPTIONS" => Ok(HttpMethod::OPTIONS),
-            _ => Err(format!("Unsupported HTTP method: {}", s)),
+            _ => Err(HttpParseError::UnsupportedMethod(s.to_string())),
         }
     }
 }
