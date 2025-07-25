@@ -2,9 +2,12 @@ use crate::http::enums::{HttpStatus, HttpVersion};
 use crate::http::request::HttpRequest;
 use crate::http::response::HttpResponse;
 use crate::http::util::constants::HttpLimits;
-use crate::http::util::query_params::extract_query_params;
+use crate::http::util::parser::extract_query_params;
 
+// TODO this should just respond with a type Result<(), HttpError>, we can leave it to the proxy logic to handle a response for the code?
+// Or do we just send a response inside the function and handle what happens based on the response in the proxy server
 
+// TODO merge with parser, decrease overhead.
 pub fn verify_http_request(req: &HttpRequest) -> Result<(), HttpResponse> {
 
     let (path, query) = extract_query_params(req.path.as_str());
