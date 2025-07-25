@@ -3,7 +3,6 @@
 pub mod parser;
 pub mod validator;
 pub mod builder;
-pub mod query_params;
 pub mod url_lib;
 pub mod errors;
 pub mod constants;
@@ -16,7 +15,7 @@ pub use builder::{
     create_html_response,
     create_json_response,
 };
-pub use query_params::extract_query_params;
+
 pub use validator::verify_http_request;
 pub use url_lib::{url_decode, url_encode};
 pub use errors::HttpParseError;
